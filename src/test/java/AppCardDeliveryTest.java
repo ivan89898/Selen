@@ -23,4 +23,18 @@ public class AppCardDeliveryTest {
         $("[data-test-id=notification]").shouldBe(Condition.visible, Duration.ofSeconds(15));
 
     }
+    @Test
+    void ShouldTestV2() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Екатеринбург");
+        $(By.xpath("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span/span/span[1]/input")).sendKeys(Keys.CONTROL + "a");
+        $(By.xpath("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span/span/span[1]/input")).sendKeys(Keys.DELETE);
+        $(By.xpath("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span/span/span[1]/input")).setValue("25082022");
+        $("[data-test-id=name] input").setValue("Ёжин Иванов");
+        $("[data-test-id=phone] input").setValue("+79999999999");
+        $("[data-test-id=agreement]").click();
+        $(By.xpath("//*[text()='Забронировать']")).click();
+        $("[data-test-id=notification]").shouldBe(Condition.visible, Duration.ofSeconds(15));
+
+    }
 }
